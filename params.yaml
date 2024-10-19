@@ -1,0 +1,5 @@
+# VIdeo resolution and frame rate
+target_width: 640
+target_height: 480
+frame_rate: 10
+max_workers: 4
