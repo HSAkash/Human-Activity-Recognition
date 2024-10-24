@@ -1,5 +1,7 @@
-# VIdeo resolution and frame rate
-target_width: 640
-target_height: 480
-frame_rate: 10
-max_workers: 4
+# paarallelism
+MAX_WORKERS: 4
+
+
+IMAGE_HEIGHT: 128
+IMAGE_WIDTH: 128
+SEQUENCE_LENGTH: 20

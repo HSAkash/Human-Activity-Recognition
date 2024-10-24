@@ -1,16 +1,12 @@
 artifacts_root: data
 
 
-data_ingestion:
-  root_dir: data/
-  source_URL: https://www.kaggle.com/api/v1/datasets/download/sharjeelmazhar/human-activity-recognition-video-dataset
-  local_data_file: data/human-activity-recognition-video-dataset.zip
-  unzip_dir: data/human_activity_recognition_video_dataset
-
-data_resize:
-  root_dir: data/
-  video_source_dir: data/human_activity_recognition_video_dataset
-  output_dir: data/human_activity_recognition_video_dataset_resized
+image_extraction:
+  root_dir: data
+  source_dir: data/videoDataset
+  destination_dir: data/imageDataset
+  image_format: jpg
+  
 
 
 
