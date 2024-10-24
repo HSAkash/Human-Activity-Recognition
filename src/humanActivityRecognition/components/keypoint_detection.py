@@ -22,8 +22,10 @@ class KeypointDetection:
         for result in results:
             # Get the boxes
             boxes = result.boxes.data.cpu().numpy().astype(np.int16)
-            if boxes.shape[0] > 2:
+            if boxes.shape[0] !=0 and len(boxes.shape)==2 and boxes.shape[1]==6:
                 boxes = result.boxes.data.cpu()[:2,:4].numpy().astype(np.int16)
+            else:
+                boxes = np.array([], dtype=np.int16)
             all_boxes.append(boxes)
             # Get the keypoints
             keypoints = result.keypoints.data.cpu().numpy()

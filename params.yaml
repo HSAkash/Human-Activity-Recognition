@@ -1,7 +1,11 @@
 # paarallelism
 MAX_WORKERS: 4
 
-
+# Data
 IMAGE_HEIGHT: 128
 IMAGE_WIDTH: 128
 SEQUENCE_LENGTH: 20
+
+# Bluring
+BLUR_STRENGTH: 60
+

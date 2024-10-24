@@ -26,6 +26,18 @@ class KeypointDetectionConfig:
 
 
 @dataclass(frozen=True)
+class BluringImageConfig:
+    root_dir                : Path
+    image_dir               : Path
+    box_dir                 : Path
+    blured_image_dir        : Path
+    image_format            : str
+    box_format              : str
+    BLUR_STRENGTH           : int
+    MAX_WORKERS             : int
+
+
+@dataclass(frozen=True)
 class HistoryModelConfig:
     epoch                   : np.array
     loss                    : np.array

@@ -16,5 +16,13 @@ keypoint_detection:
   image_format: jpg
   keypoint_format: npy
 
+bluring_image:
+  root_dir: data
+  image_dir: data/imageDataset
+  box_dir: data/boxDataset
+  blured_image_dir: data/bluredImageDataset
+  image_format: jpg
+  box_format: npy
+
 
 
