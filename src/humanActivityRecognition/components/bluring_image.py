@@ -35,8 +35,12 @@ class BluringImage:
 
         # Fill the bounding boxes in the mask with white (255)
         for box in boxes:
-            x1, y1, x2, y2 = box
-            mask[y1:y2, x1:x2] = 255
+            try:
+                x1, y1, x2, y2 = box
+                mask[y1:y2, x1:x2] = 255
+            except Exception as e:
+                logger.error(f"Error in box: {box}, {e}")
+                raise e
 
         # Blur the entire image with the specified blur strength
         blurred_image = cv2.GaussianBlur(image, (blur_strength, blur_strength), 0)
@@ -85,17 +89,17 @@ class BluringImage:
         This function will blur the images outside the bounding boxes.
         '''
         # Get the list of image files.
-        image_files = glob(
+        image_files = sorted(glob(
             os.path.join(
                 self.config.image_dir,
                 '*','*',
-                f'*.{self.config.image_format}'))
+                f'*.{self.config.image_format}')))
         # Get the list of bounding box files.
-        box_files = glob(
+        box_files = sorted(glob(
             os.path.join(
                 self.config.box_dir,
                 '*','*',
-                f'*.{self.config.box_format}'))
+                f'*.{self.config.box_format}')))
 
         # Get the list of image directories.
         image_dirs = glob(

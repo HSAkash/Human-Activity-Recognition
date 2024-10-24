@@ -9,9 +9,9 @@ stages:
       size: 545
     - path: data/videoDataset
       hash: md5
-      md5: f39f00cd36a081101f6b7e4b9c161d6a.dir
-      size: 1193872161
-      nfiles: 12
+      md5: c4af549caa3b0de78e2467f052979e4b.dir
+      size: 209573125
+      nfiles: 2
     - path: params.yaml
       hash: md5
       md5: de73c556715c6f8ae7376f6f8a56a440
@@ -29,9 +29,9 @@ stages:
     outs:
     - path: data/imageDataset
       hash: md5
-      md5: 9a6ffe08f87e27543e1798b098a00f4d.dir
-      size: 1295394
-      nfiles: 240
+      md5: e1d7164c7ec9a72e6524cbea2d37c647.dir
+      size: 202067
+      nfiles: 40
   keypoint_detection:
     cmd: python src/humanActivityRecognition/pipeline/stage_02_keypoint_detection.py
     deps:
@@ -41,9 +41,9 @@ stages:
       size: 545
     - path: data/imageDataset
       hash: md5
-      md5: 9a6ffe08f87e27543e1798b098a00f4d.dir
-      size: 1295394
-      nfiles: 240
+      md5: e1d7164c7ec9a72e6524cbea2d37c647.dir
+      size: 202067
+      nfiles: 40
     - path: src/humanActivityRecognition/pipeline/stage_02_keypoint_detection.py
       hash: md5
       md5: 23ef5acdbcb5823b52c0bda82b14c53c
@@ -51,14 +51,14 @@ stages:
     outs:
     - path: data/boxDataset
       hash: md5
-      md5: 1a99c3dc978e3af8f92dcd36eb4e2e25.dir
-      size: 32208
-      nfiles: 240
+      md5: 8edbce5adb271af6fb7a68ce2e703240.dir
+      size: 5368
+      nfiles: 40
     - path: data/keypointDataset
       hash: md5
-      md5: a6656baf7e5d22064080813671d740cd.dir
-      size: 107628
-      nfiles: 240
+      md5: ab8c80deb2d7d453e7aa35ec5227fa2f.dir
+      size: 18176
+      nfiles: 40
   bluring_image:
     cmd: python src/humanActivityRecognition/pipeline/state_03_bluring_image.py
     deps:
@@ -68,14 +68,14 @@ stages:
       size: 545
     - path: data/boxDataset
       hash: md5
-      md5: 1a99c3dc978e3af8f92dcd36eb4e2e25.dir
-      size: 32208
-      nfiles: 240
+      md5: 8edbce5adb271af6fb7a68ce2e703240.dir
+      size: 5368
+      nfiles: 40
     - path: data/imageDataset
       hash: md5
-      md5: 9a6ffe08f87e27543e1798b098a00f4d.dir
-      size: 1295394
-      nfiles: 240
+      md5: e1d7164c7ec9a72e6524cbea2d37c647.dir
+      size: 202067
+      nfiles: 40
     - path: src/humanActivityRecognition/pipeline/state_03_bluring_image.py
       hash: md5
       md5: b27ad7ee7d9e79b3a66f6f3b68eceb30
@@ -86,6 +86,38 @@ stages:
     outs:
     - path: data/bluredImageDataset
       hash: md5
-      md5: b3a2361ab78fd9d7744ef9d07b813cb3.dir
-      size: 857427
-      nfiles: 240
+      md5: f3772b3c3d48af52748c860e614a4278.dir
+      size: 134296
+      nfiles: 40
+  image_extraction:
+    cmd: python src/humanActivityRecognition/pipeline/stage_01_image_extraction.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: 4300686bffd86a6e4d8883a4a6ad080f
+      size: 545
+    - path: data/videoDataset
+      hash: md5
+      md5: c4af549caa3b0de78e2467f052979e4b.dir
+      size: 209573125
+      nfiles: 2
+    - path: params.yaml
+      hash: md5
+      md5: de73c556715c6f8ae7376f6f8a56a440
+      size: 123
+    - path: src/humanActivityRecognition/pipeline/stage_01_image_extraction.py
+      hash: md5
+      md5: 6ac4120325b32cd7e9693ef4cdbcd1c0
+      size: 884
+    params:
+      params.yaml:
+        IMAGE_HEIGHT: 128
+        IMAGE_WIDTH: 128
+        MAX_WORKERS: 4
+        SEQUENCE_LENGTH: 20
+    outs:
+    - path: data/imageDataset
+      hash: md5
+      md5: e1d7164c7ec9a72e6524cbea2d37c647.dir
+      size: 202067
+      nfiles: 40

@@ -1,5 +1,5 @@
 stages:
-  data_ingestion:
+  image_extraction:
     cmd: python src/humanActivityRecognition/pipeline/stage_01_image_extraction.py
     deps:
       - src/humanActivityRecognition/pipeline/stage_01_image_extraction.py
