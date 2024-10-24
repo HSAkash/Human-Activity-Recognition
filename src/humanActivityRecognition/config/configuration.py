@@ -6,7 +6,8 @@ import os
 from pathlib import Path
 from humanActivityRecognition.utils.common import read_yaml, create_directories
 from humanActivityRecognition.entity.config_entity import (
-    ImageExtractionConfig
+    ImageExtractionConfig,
+    KeypointDetectionConfig
 )
 
 
@@ -38,3 +39,20 @@ class ConfigurationManager:
         )
 
         return image_extraction_config
+    
+    def get_keypoint_detection_config(self) -> KeypointDetectionConfig:
+        config = self.config.keypoint_detection
+
+        create_directories([config.keypoint_dir, config.box_dir])
+
+        keypoint_detection_config = KeypointDetectionConfig(
+            root_dir = config.root_dir,
+            image_dir = config.image_dir,
+            keypoint_dir = config.keypoint_dir,
+            box_dir = config.box_dir,
+            yolo_model_path = config.yolo_model_path,
+            image_format = config.image_format,
+            keypoint_format = config.keypoint_format
+        )
+
+        return keypoint_detection_config

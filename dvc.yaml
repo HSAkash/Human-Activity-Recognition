@@ -13,3 +13,13 @@ stages:
       - SEQUENCE_LENGTH
     outs:
       - data/imageDataset
+
+  keypoint_detection:
+    cmd: python src/humanActivityRecognition/pipeline/stage_02_keypoint_detection.py
+    deps:
+      - src/humanActivityRecognition/pipeline/stage_02_keypoint_detection.py
+      - data/imageDataset
+      - config/config.yaml
+    outs:
+      - data/keypointDataset
+      - data/boxDataset

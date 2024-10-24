@@ -5,8 +5,8 @@ stages:
     deps:
     - path: config/config.yaml
       hash: md5
-      md5: 1eef36fa785f11aec12b0e56a3f4f760
-      size: 153
+      md5: b623e15ddceb239357c1a7b28f7f4918
+      size: 372
     - path: data/videoDataset
       hash: md5
       md5: f39f00cd36a081101f6b7e4b9c161d6a.dir
@@ -29,6 +29,37 @@ stages:
     outs:
     - path: data/imageDataset
       hash: md5
-      md5: 280d314926cd31b816a857b6a57d1555.dir
-      size: 1859879
+      md5: 9a6ffe08f87e27543e1798b098a00f4d.dir
+      size: 1295394
       nfiles: 240
+  keypoint_detection:
+    cmd: python src/humanActivityRecognition/pipeline/stage_02_keypoint_detection.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: b623e15ddceb239357c1a7b28f7f4918
+      size: 372
+    - path: data/imageDataset
+      hash: md5
+      md5: 9a6ffe08f87e27543e1798b098a00f4d.dir
+      size: 1295394
+      nfiles: 240
+    - path: src/humanActivityRecognition/pipeline/stage_02_keypoint_detection.py
+      hash: md5
+      md5: 23ef5acdbcb5823b52c0bda82b14c53c
+      size: 884
+    outs:
+    - path: data/boxDataset
+      hash: md5
+      md5: 9a0a1c51a2697cd6a1e6c64a95a30dc5.dir
+      size: 32856
+      nfiles: 240
+    - path: data/keypointDataset
+      hash: md5
+      md5: a6656baf7e5d22064080813671d740cd.dir
+      size: 107628
+      nfiles: 240
+    - path: data/model/yolo11n-pose.pt
+      hash: md5
+      md5: 475cd7f66ff9f02e47cf6546bcab42a7
+      size: 6255593

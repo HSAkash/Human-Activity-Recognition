@@ -11,4 +11,5 @@ types-PyYAML
 scipy
 pandas
 opencv-python
+ultralytics==8.3.21
 -e .

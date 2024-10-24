@@ -6,7 +6,15 @@ image_extraction:
   source_dir: data/videoDataset
   destination_dir: data/imageDataset
   image_format: jpg
-  
+
+keypoint_detection:
+  root_dir: data
+  image_dir: data/imageDataset
+  keypoint_dir: data/keypointDataset
+  box_dir: data/boxDataset
+  yolo_model_path: data/model/yolo11n-pose.pt
+  image_format: jpg
+  keypoint_format: npy
 
 
 
