@@ -1,0 +1,34 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/humanActivityRecognition/pipeline/stage_01_image_extraction.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: 1eef36fa785f11aec12b0e56a3f4f760
+      size: 153
+    - path: data/videoDataset
+      hash: md5
+      md5: f39f00cd36a081101f6b7e4b9c161d6a.dir
+      size: 1193872161
+      nfiles: 12
+    - path: params.yaml
+      hash: md5
+      md5: c38a5811ea46ba153a5296486e5a3799
+      size: 87
+    - path: src/humanActivityRecognition/pipeline/stage_01_image_extraction.py
+      hash: md5
+      md5: 6ac4120325b32cd7e9693ef4cdbcd1c0
+      size: 884
+    params:
+      params.yaml:
+        IMAGE_HEIGHT: 128
+        IMAGE_WIDTH: 128
+        MAX_WORKERS: 4
+        SEQUENCE_LENGTH: 20
+    outs:
+    - path: data/imageDataset
+      hash: md5
+      md5: 280d314926cd31b816a857b6a57d1555.dir
+      size: 1859879
+      nfiles: 240

@@ -1,0 +1,15 @@
+stages:
+  data_ingestion:
+    cmd: python src/humanActivityRecognition/pipeline/stage_01_image_extraction.py
+    deps:
+      - src/humanActivityRecognition/pipeline/stage_01_image_extraction.py
+      - data/videoDataset
+      - config/config.yaml
+      - params.yaml
+    params:
+      - MAX_WORKERS
+      - IMAGE_HEIGHT
+      - IMAGE_WIDTH
+      - SEQUENCE_LENGTH
+    outs:
+      - data/imageDataset

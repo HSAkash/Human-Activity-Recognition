@@ -1,5 +1,6 @@
 import os
 import cv2
+import numpy as np
 from glob import glob
 from tqdm import tqdm
 from pathlib import Path
@@ -10,6 +11,33 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 class ImageExtraction:
     def __init__(self, config: ImageExtractionConfig):
         self.config = config
+
+
+    def resize_with_padding(self, image):
+        # Get the original dimensions
+        original_height, original_width = image.shape[:2]
+
+        # Calculate the scaling factor while maintaining aspect ratio
+        scale = min(self.config.IMAGE_WIDTH / original_width, self.config.IMAGE_HEIGHT / original_height)
+        
+        # Compute the new size while maintaining the aspect ratio
+        new_width = int(original_width * scale)
+        new_height = int(original_height * scale)
+        
+        # Resize the image
+        resized_image = cv2.resize(image, (new_width, new_height), interpolation=cv2.INTER_AREA)
+
+        # Create a black canvas of the target size
+        canvas = np.zeros((self.config.IMAGE_HEIGHT, self.config.IMAGE_WIDTH, 3), dtype=np.uint8)
+
+        # Calculate the top-left corner position to center the image on the canvas
+        x_offset = (self.config.IMAGE_WIDTH - new_width) // 2
+        y_offset = (self.config.IMAGE_HEIGHT - new_height) // 2
+
+        # Place the resized image onto the black canvas
+        canvas[y_offset:y_offset + new_height, x_offset:x_offset + new_width] = resized_image
+
+        return canvas
 
     def frames_extraction(self, video_path):
         '''
@@ -45,7 +73,7 @@ class ImageExtraction:
                 break
 
             # Resize the Frame to fixed height and width.
-            resized_frame = cv2.resize(frame, (self.config.IMAGE_HEIGHT, self.config.IMAGE_WIDTH))
+            resized_frame = self.resize_with_padding(frame)
 
             # # Normalize the resized frame by dividing it with 255 so that each pixel value then lies between 0 and 1
             # normalized_frame = resized_frame / 255.0
