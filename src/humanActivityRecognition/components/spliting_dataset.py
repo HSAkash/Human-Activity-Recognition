@@ -112,10 +112,10 @@ class SplitingDataset:
         # copy the images to the respective directories
         logger.info(f"Splitting {source_dir} dataset into training and testing sets...")
         for src, dest in tqdm(zip(source_train_dir, destination_train_dir), total=len(source_train_dir)):
-            shutil.copytree(src, dest)
+            shutil.copytree(src, dest, dirs_exist_ok=True)
 
         for src, dest in tqdm(zip(source_test_dir, destination_test_dir), total=len(source_test_dir)):
-            shutil.copytree(src, dest)
+            shutil.copytree(src, dest, dirs_exist_ok=True)
 
     def run(self):
         '''
