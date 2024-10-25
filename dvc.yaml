@@ -25,9 +25,9 @@ stages:
       - data/boxDataset
 
   bluring_image:
-    cmd: python src/humanActivityRecognition/pipeline/state_03_bluring_image.py
+    cmd: python src/humanActivityRecognition/pipeline/stage_03_bluring_image.py
     deps:
-      - src/humanActivityRecognition/pipeline/state_03_bluring_image.py
+      - src/humanActivityRecognition/pipeline/stage_03_bluring_image.py
       - data/imageDataset
       - data/boxDataset
       - config/config.yaml
