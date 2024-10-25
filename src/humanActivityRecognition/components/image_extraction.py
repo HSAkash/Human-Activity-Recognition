@@ -91,7 +91,14 @@ class ImageExtraction:
         '''
         This function processes a single video by extracting frames and saving them to the destination directory.
         '''
-        dest_dir = os.path.join(imageDataset_dest_dir, class_name, f"{video_index:0>5}")
+
+        # Get the file name of the video
+        file_name = os.path.basename(video_path)
+        # get file name without extension
+        file_name = os.path.splitext(file_name)[0]
+
+        # get the destination directory for the images
+        dest_dir = os.path.join(imageDataset_dest_dir, class_name, f"{video_index:0>5}_{file_name}")
         os.makedirs(dest_dir, exist_ok=True)
 
         # Skip processing if frames already exist
