@@ -37,8 +37,8 @@ stages:
     deps:
     - path: config/config.yaml
       hash: md5
-      md5: 00cbdf8c74feab901af9a8b4ced3192a
-      size: 1064
+      md5: c17f5a6aba71bce0d68ac3ed353f71c0
+      size: 1273
     - path: data/imageDataset
       hash: md5
       md5: 5cce5778c4372c5462c42da9759a38ab.dir
@@ -64,8 +64,8 @@ stages:
     deps:
     - path: config/config.yaml
       hash: md5
-      md5: 00cbdf8c74feab901af9a8b4ced3192a
-      size: 1064
+      md5: c17f5a6aba71bce0d68ac3ed353f71c0
+      size: 1273
     - path: data/boxDataset
       hash: md5
       md5: 97a85a3998a13e23f7cae4ee9ce1c016.dir
@@ -94,8 +94,8 @@ stages:
     deps:
     - path: config/config.yaml
       hash: md5
-      md5: 00cbdf8c74feab901af9a8b4ced3192a
-      size: 1064
+      md5: c17f5a6aba71bce0d68ac3ed353f71c0
+      size: 1273
     - path: data/videoDataset
       hash: md5
       md5: 82c0a80e69bccb5e59843e06547a1056.dir
@@ -126,8 +126,8 @@ stages:
     deps:
     - path: config/config.yaml
       hash: md5
-      md5: 00cbdf8c74feab901af9a8b4ced3192a
-      size: 1064
+      md5: c17f5a6aba71bce0d68ac3ed353f71c0
+      size: 1273
     - path: data/bluredImageDataset
       hash: md5
       md5: 45dfe5971132e9ace98d8b61455be336.dir
@@ -162,8 +162,8 @@ stages:
     deps:
     - path: config/config.yaml
       hash: md5
-      md5: 00cbdf8c74feab901af9a8b4ced3192a
-      size: 1064
+      md5: c17f5a6aba71bce0d68ac3ed353f71c0
+      size: 1273
     - path: data/splitDataset/bluredImageDataset
       hash: md5
       md5: 0e538438a0aa511d48e3415db5a8411a.dir
@@ -206,4 +206,30 @@ stages:
       hash: md5
       md5: 8cafca7ded7ecb1e96f97135a2b9b506.dir
       size: 1222080
+      nfiles: 2280
+  feature_extraction:
+    cmd: python src/humanActivityRecognition/pipeline/stage_06_feature_extraction.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: c17f5a6aba71bce0d68ac3ed353f71c0
+      size: 1273
+    - path: data/augmentedDataset/bluredImageDataset
+      hash: md5
+      md5: c576a021f1893e3945b6a718e7da2b3e.dir
+      size: 8304325
+      nfiles: 2280
+    - path: src/humanActivityRecognition/pipeline/stage_06_feature_extraction.py
+      hash: md5
+      md5: cffae3a66ba2821b6c8cdd4b968441fd
+      size: 884
+    params:
+      params.yaml:
+        IMAGE_HEIGHT: 128
+        IMAGE_WIDTH: 128
+    outs:
+    - path: data/featureDataset/bluredImageDataset
+      hash: md5
+      md5: 24fbe999f0c1245eba3f97ffe95c7c53.dir
+      size: 18969600
       nfiles: 2280

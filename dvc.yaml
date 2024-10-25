@@ -66,4 +66,16 @@ stages:
       - data/augmentedDataset/bluredImageDataset
       - data/augmentedDataset/keypointDataset
 
+  feature_extraction:
+    cmd: python src/humanActivityRecognition/pipeline/stage_06_feature_extraction.py
+    deps:
+      - src/humanActivityRecognition/pipeline/stage_06_feature_extraction.py
+      - data/augmentedDataset/bluredImageDataset
+      - config/config.yaml
+    params:
+      - IMAGE_HEIGHT
+      - IMAGE_WIDTH
+    outs:
+      - data/featureDataset/bluredImageDataset
+
 

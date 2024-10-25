@@ -59,6 +59,15 @@ class DataAugmentationConfig:
     IMAGE_HEIGHT            : int
     IMAGE_WIDTH             : int
 
+@dataclass(frozen=True)
+class FeatureExtractionConfig:
+    model_weights           : str
+    blured_aug_dir          : Path
+    blured_feature_dir      : Path
+    feature_format          : str
+    image_format            : str
+    IMAGE_HEIGHT            : int
+    IMAGE_WIDTH             : int
 
 @dataclass(frozen=True)
 class HistoryModelConfig:

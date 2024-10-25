@@ -10,7 +10,8 @@ from humanActivityRecognition.entity.config_entity import (
     KeypointDetectionConfig,
     BluringImageConfig,
     SplitingDatasetConfig,
-    DataAugmentationConfig
+    DataAugmentationConfig,
+    FeatureExtractionConfig
 )
 
 
@@ -114,3 +115,21 @@ class ConfigurationManager:
         )
 
         return data_augmentation_config
+    
+
+    def get_feature_extraction_config(self) -> FeatureExtractionConfig:
+        config = self.config.feature_extraction
+
+        create_directories([config.blured_feature_dir])
+
+        feature_extraction_config = FeatureExtractionConfig(
+            model_weights = config.model_weights,
+            blured_aug_dir = config.blured_aug_dir,
+            blured_feature_dir = config.blured_feature_dir,
+            feature_format = config.feature_format,
+            image_format = config.image_format,
+            IMAGE_HEIGHT = self.params.IMAGE_HEIGHT,
+            IMAGE_WIDTH = self.params.IMAGE_WIDTH
+        )
+
+        return feature_extraction_config
