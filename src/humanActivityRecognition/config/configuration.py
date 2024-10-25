@@ -10,6 +10,7 @@ from humanActivityRecognition.entity.config_entity import (
     KeypointDetectionConfig,
     BluringImageConfig,
     SplitingDatasetConfig,
+    DataAugmentationConfig
 )
 
 
@@ -93,3 +94,23 @@ class ConfigurationManager:
         )
 
         return spliting_dataset_config
+    
+    def get_data_augmentation_config(self) -> DataAugmentationConfig:
+        config = self.config.data_augmentation
+
+        create_directories([config.keypoint_aug_dir, config.blured_aug_dir])
+        
+        data_augmentation_config = DataAugmentationConfig(
+            keypoint_split_dir = config.keypoint_split_dir,
+            keypoint_aug_dir = config.keypoint_aug_dir,
+            blured_split_dir = config.blured_split_dir,
+            blured_aug_dir = config.blured_aug_dir,
+            ROTATE_FACTORS = self.params.ROTATE_FACTORS,
+            SCALE_FACTORS = self.params.SCALE_FACTORS,
+            FLIP_FACTOR = self.params.FLIP_FACTOR,
+            MAX_WORKERS = self.params.MAX_WORKERS,
+            IMAGE_HEIGHT = self.params.IMAGE_HEIGHT,
+            IMAGE_WIDTH = self.params.IMAGE_WIDTH
+        )
+
+        return data_augmentation_config

@@ -46,6 +46,19 @@ class SplitingDatasetConfig:
     TRAIN_RATION            : float
     SEED                    : int
 
+@dataclass(frozen=True)
+class DataAugmentationConfig:
+    keypoint_split_dir      : Path
+    keypoint_aug_dir        : Path
+    blured_split_dir        : Path
+    blured_aug_dir          : Path
+    ROTATE_FACTORS          : list[int] # [0, 90, 180, 270]
+    SCALE_FACTORS           : list[float] # [0.5, 1.0, 1.5]
+    FLIP_FACTOR             : bool
+    MAX_WORKERS             : int
+    IMAGE_HEIGHT            : int
+    IMAGE_WIDTH             : int
+
 
 @dataclass(frozen=True)
 class HistoryModelConfig:

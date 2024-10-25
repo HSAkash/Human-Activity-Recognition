@@ -50,4 +50,20 @@ stages:
       - data/splitDataset/keypointDataset
       - data/splitDataset/bluredImageDataset
 
+  data_augmentation:
+    cmd: python src/humanActivityRecognition/pipeline/stage_05_data_augmentation.py
+    deps:
+      - src/humanActivityRecognition/pipeline/stage_05_data_augmentation.py
+      - data/splitDataset/keypointDataset
+      - data/splitDataset/bluredImageDataset
+      - config/config.yaml
+    params:
+      - ROTATE_FACTORS
+      - SCALE_FACTORS
+      - FLIP_FACTOR
+      - MAX_WORKERS
+    outs:
+      - data/augmentedDataset/bluredImageDataset
+      - data/augmentedDataset/keypointDataset
+
 

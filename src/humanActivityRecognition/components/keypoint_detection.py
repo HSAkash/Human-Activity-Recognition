@@ -30,9 +30,9 @@ class KeypointDetection:
             # Get the keypoints
             keypoints = result.keypoints.data.cpu().numpy()
             if keypoints.shape[1:] != (17, 3):
-                keypoints = np.zeros((2,17,3), dtype=np.int16)
+                keypoints = np.zeros((2,17,3), dtype=np.float32)
             elif keypoints.shape[0] == 1:
-                keypoints = np.concatenate((keypoints, np.zeros((1,17,3), dtype=np.int16)))
+                keypoints = np.concatenate((keypoints, np.zeros((1,17,3), dtype=np.float32)))
             else:
                 keypoints = keypoints[:2]
             all_keypoints.append(keypoints)

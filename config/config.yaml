@@ -31,4 +31,8 @@ spliting_dataset:
   blured_split_dir: data/splitDataset/bluredImageDataset
   split_dir_dict_path: data/splitDataset/split_dir_dict.npy
 
-
+data_augmentation:
+  keypoint_split_dir: data/splitDataset/keypointDataset
+  keypoint_aug_dir: data/augmentedDataset/keypointDataset
+  blured_split_dir: data/splitDataset/bluredImageDataset
+  blured_aug_dir: data/augmentedDataset/bluredImageDataset
