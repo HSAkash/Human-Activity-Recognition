@@ -86,6 +86,12 @@ class FeatureExtraction:
         )
         for dir in tqdm(all_dirs):
             image_paths = glob(os.path.join(dir, f'*{self.config.image_format}'))
+            image_paths = sorted(image_paths)
+            feature_path = image_paths[-1].replace(
+                self.config.blured_aug_dir, self.config.blured_feature_dir).replace(
+                    self.config.image_format, self.config.feature_format)
+            if os.path.exists(feature_path):
+                continue
             features = self.extract_features(image_paths)
             self.save_features(features, image_paths)
     
