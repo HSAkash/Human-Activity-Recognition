@@ -9,6 +9,7 @@ from humanActivityRecognition.entity.config_entity import (
     ImageExtractionConfig,
     KeypointDetectionConfig,
     BluringImageConfig,
+    SplitingDatasetConfig,
 )
 
 
@@ -75,3 +76,20 @@ class ConfigurationManager:
         )
 
         return bluring_image_config
+    
+    def get_spliting_dataset_config(self) -> SplitingDatasetConfig:
+        config = self.config.spliting_dataset
+
+        create_directories([config.keypoint_split_dir, config.blured_split_dir])
+
+        spliting_dataset_config = SplitingDatasetConfig(
+            blured_image_dir = config.blured_image_dir,
+            keypoint_dir = config.keypoint_dir,
+            keypoint_split_dir = config.keypoint_split_dir,
+            blured_split_dir = config.blured_split_dir,
+            split_dir_dict_path = config.split_dir_dict_path,
+            TRAIN_RATION = self.params.TRAIN_RATION,
+            SEED = self.params.SEED
+        )
+
+        return spliting_dataset_config

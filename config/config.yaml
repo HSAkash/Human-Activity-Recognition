@@ -24,5 +24,11 @@ bluring_image:
   image_format: jpg
   box_format: npy
 
+spliting_dataset:
+  blured_image_dir: data/bluredImageDataset
+  keypoint_dir: data/keypointDataset
+  keypoint_split_dir: data/splitDataset/keypointDataset
+  blured_split_dir: data/splitDataset/bluredImageDataset
+  split_dir_dict_path: data/splitDataset/split_dir_dict.npy
 
 

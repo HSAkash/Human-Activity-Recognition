@@ -37,13 +37,13 @@ stages:
     deps:
     - path: config/config.yaml
       hash: md5
-      md5: 4300686bffd86a6e4d8883a4a6ad080f
-      size: 545
+      md5: 5e69c87169c704ab16049114831230d4
+      size: 817
     - path: data/imageDataset
       hash: md5
-      md5: e1d7164c7ec9a72e6524cbea2d37c647.dir
-      size: 202067
-      nfiles: 40
+      md5: 5cce5778c4372c5462c42da9759a38ab.dir
+      size: 1084185
+      nfiles: 200
     - path: src/humanActivityRecognition/pipeline/stage_02_keypoint_detection.py
       hash: md5
       md5: 23ef5acdbcb5823b52c0bda82b14c53c
@@ -51,31 +51,31 @@ stages:
     outs:
     - path: data/boxDataset
       hash: md5
-      md5: 8edbce5adb271af6fb7a68ce2e703240.dir
-      size: 5368
-      nfiles: 40
+      md5: 97a85a3998a13e23f7cae4ee9ce1c016.dir
+      size: 26720
+      nfiles: 200
     - path: data/keypointDataset
       hash: md5
-      md5: ab8c80deb2d7d453e7aa35ec5227fa2f.dir
-      size: 18176
-      nfiles: 40
+      md5: 814b70b641ef921620b21287c3099d53.dir
+      size: 87004
+      nfiles: 200
   bluring_image:
     cmd: python src/humanActivityRecognition/pipeline/state_03_bluring_image.py
     deps:
     - path: config/config.yaml
       hash: md5
-      md5: 4300686bffd86a6e4d8883a4a6ad080f
-      size: 545
+      md5: 5e69c87169c704ab16049114831230d4
+      size: 817
     - path: data/boxDataset
       hash: md5
-      md5: 8edbce5adb271af6fb7a68ce2e703240.dir
-      size: 5368
-      nfiles: 40
+      md5: 97a85a3998a13e23f7cae4ee9ce1c016.dir
+      size: 26720
+      nfiles: 200
     - path: data/imageDataset
       hash: md5
-      md5: e1d7164c7ec9a72e6524cbea2d37c647.dir
-      size: 202067
-      nfiles: 40
+      md5: 5cce5778c4372c5462c42da9759a38ab.dir
+      size: 1084185
+      nfiles: 200
     - path: src/humanActivityRecognition/pipeline/state_03_bluring_image.py
       hash: md5
       md5: b27ad7ee7d9e79b3a66f6f3b68eceb30
@@ -86,25 +86,25 @@ stages:
     outs:
     - path: data/bluredImageDataset
       hash: md5
-      md5: f3772b3c3d48af52748c860e614a4278.dir
-      size: 134296
-      nfiles: 40
+      md5: 45dfe5971132e9ace98d8b61455be336.dir
+      size: 705867
+      nfiles: 200
   image_extraction:
     cmd: python src/humanActivityRecognition/pipeline/stage_01_image_extraction.py
     deps:
     - path: config/config.yaml
       hash: md5
-      md5: 4300686bffd86a6e4d8883a4a6ad080f
-      size: 545
+      md5: 5e69c87169c704ab16049114831230d4
+      size: 817
     - path: data/videoDataset
       hash: md5
-      md5: c4af549caa3b0de78e2467f052979e4b.dir
-      size: 209573125
-      nfiles: 2
+      md5: 82c0a80e69bccb5e59843e06547a1056.dir
+      size: 916662650
+      nfiles: 10
     - path: params.yaml
       hash: md5
-      md5: de73c556715c6f8ae7376f6f8a56a440
-      size: 123
+      md5: 880c70bfbfa8946c2e4357f538a7ddeb
+      size: 164
     - path: src/humanActivityRecognition/pipeline/stage_01_image_extraction.py
       hash: md5
       md5: 6ac4120325b32cd7e9693ef4cdbcd1c0
@@ -118,6 +118,42 @@ stages:
     outs:
     - path: data/imageDataset
       hash: md5
-      md5: e1d7164c7ec9a72e6524cbea2d37c647.dir
-      size: 202067
-      nfiles: 40
+      md5: 5cce5778c4372c5462c42da9759a38ab.dir
+      size: 1084185
+      nfiles: 200
+  spliting_dataset:
+    cmd: python src/humanActivityRecognition/pipeline/stage_04_spliting_dataset.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: 5e69c87169c704ab16049114831230d4
+      size: 817
+    - path: data/bluredImageDataset
+      hash: md5
+      md5: 45dfe5971132e9ace98d8b61455be336.dir
+      size: 705867
+      nfiles: 200
+    - path: data/keypointDataset
+      hash: md5
+      md5: 814b70b641ef921620b21287c3099d53.dir
+      size: 87004
+      nfiles: 200
+    - path: src/humanActivityRecognition/pipeline/stage_04_spliting_dataset.py
+      hash: md5
+      md5: 2c8d1b9b53723b0d485dbc4157031d8f
+      size: 862
+    params:
+      params.yaml:
+        SEED: 42
+        TRAIN_RATION: 0.8
+    outs:
+    - path: data/splitDataset/bluredImageDataset
+      hash: md5
+      md5: 0e538438a0aa511d48e3415db5a8411a.dir
+      size: 705867
+      nfiles: 200
+    - path: data/splitDataset/keypointDataset
+      hash: md5
+      md5: c1f385a4fb1e7b4a0a7bae401517aaeb.dir
+      size: 87004
+      nfiles: 200

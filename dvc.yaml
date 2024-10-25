@@ -35,3 +35,19 @@ stages:
       - BLUR_STRENGTH
     outs:
       - data/bluredImageDataset
+
+  spliting_dataset:
+    cmd: python src/humanActivityRecognition/pipeline/stage_04_spliting_dataset.py
+    deps:
+      - src/humanActivityRecognition/pipeline/stage_04_spliting_dataset.py
+      - data/bluredImageDataset
+      - data/keypointDataset
+      - config/config.yaml
+    params:
+      - TRAIN_RATION
+      - SEED
+    outs:
+      - data/splitDataset/keypointDataset
+      - data/splitDataset/bluredImageDataset
+
+

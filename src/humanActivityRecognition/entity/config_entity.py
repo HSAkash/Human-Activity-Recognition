@@ -36,6 +36,16 @@ class BluringImageConfig:
     BLUR_STRENGTH           : int
     MAX_WORKERS             : int
 
+@dataclass(frozen=True)
+class SplitingDatasetConfig:
+    blured_image_dir        : Path
+    keypoint_dir            : Path
+    keypoint_split_dir      : Path
+    blured_split_dir        : Path
+    split_dir_dict_path     : Path
+    TRAIN_RATION            : float
+    SEED                    : int
+
 
 @dataclass(frozen=True)
 class HistoryModelConfig:

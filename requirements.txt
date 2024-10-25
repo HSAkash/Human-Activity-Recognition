@@ -13,4 +13,5 @@ pandas
 opencv-python
 ultralytics==8.3.21
 tensorflow
+scikit-learn
 -e .

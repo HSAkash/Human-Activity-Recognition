@@ -9,3 +9,6 @@ SEQUENCE_LENGTH: 20
 # Bluring
 BLUR_STRENGTH: 60
 
+# split ratio
+TRAIN_RATION: 0.8
+SEED: 42
