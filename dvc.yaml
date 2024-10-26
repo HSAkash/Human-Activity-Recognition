@@ -78,4 +78,19 @@ stages:
     outs:
       - data/featureDataset/bluredImageDataset
 
+  final_dataset:
+    cmd: python src/humanActivityRecognition/pipeline/stage_07_final_dataset.py
+    deps:
+      - src/humanActivityRecognition/pipeline/stage_07_final_dataset.py
+      - data/featureDataset/bluredImageDataset
+      - data/augmentedDataset/keypointDataset
+      - config/config.yaml
+    params:
+      - IMAGE_HEIGHT
+      - IMAGE_WIDTH
+      - MAX_WORKERS
+    outs:
+      - data/finalDataset/bluredImageDataset
+      - data/finalDataset/keypointDataset
+
 

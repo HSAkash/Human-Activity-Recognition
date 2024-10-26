@@ -70,6 +70,17 @@ class FeatureExtractionConfig:
     IMAGE_WIDTH             : int
 
 @dataclass(frozen=True)
+class FinalDatasetConfig:
+    blured_feature_dir      : Path
+    keypoint_aug_dir        : Path
+    blured_final_dir        : Path
+    keypoint_final_dir      : Path
+    data_format             : str
+    IMAGE_HEIGHT            : int
+    IMAGE_WIDTH             : int
+    MAX_WORKERS             : int
+
+@dataclass(frozen=True)
 class HistoryModelConfig:
     epoch                   : np.array
     loss                    : np.array

@@ -43,3 +43,10 @@ feature_extraction:
   blured_feature_dir: data/featureDataset/bluredImageDataset
   feature_format: npy
   image_format: jpg
+
+final_dataset:
+  blured_feature_dir: data/featureDataset/bluredImageDataset
+  keypoint_aug_dir: data/augmentedDataset/keypointDataset
+  blured_final_dir: data/finalDataset/bluredImageDataset
+  keypoint_final_dir: data/finalDataset/keypointDataset
+  data_format: npy

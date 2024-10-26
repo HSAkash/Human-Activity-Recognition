@@ -11,7 +11,8 @@ from humanActivityRecognition.entity.config_entity import (
     BluringImageConfig,
     SplitingDatasetConfig,
     DataAugmentationConfig,
-    FeatureExtractionConfig
+    FeatureExtractionConfig,
+    FinalDatasetConfig
 )
 
 
@@ -133,3 +134,21 @@ class ConfigurationManager:
         )
 
         return feature_extraction_config
+    
+    def get_final_dataset_config(self) -> FinalDatasetConfig:
+        config = self.config.final_dataset
+
+        create_directories([config.blured_final_dir, config.keypoint_final_dir])
+
+        final_dataset_config = FinalDatasetConfig(
+            blured_feature_dir = config.blured_feature_dir,
+            keypoint_aug_dir = config.keypoint_aug_dir,
+            blured_final_dir = config.blured_final_dir,
+            keypoint_final_dir = config.keypoint_final_dir,
+            data_format = config.data_format,
+            IMAGE_HEIGHT = self.params.IMAGE_HEIGHT,
+            IMAGE_WIDTH = self.params.IMAGE_WIDTH,
+            MAX_WORKERS = self.params.MAX_WORKERS
+        )
+
+        return final_dataset_config
