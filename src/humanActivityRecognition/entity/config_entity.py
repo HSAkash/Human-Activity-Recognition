@@ -98,9 +98,21 @@ class PrepareCallbacksConfig:
     VERBOSE                 : int
 
 @dataclass(frozen=True)
-class HistoryModelConfig:
-    epoch                   : np.array
-    loss                    : np.array
-    val_loss                : np.array
-    accuracy                : np.array
-    val_accuracy            : np.array
+class PrepareDatasetConfig:
+    blured_final_dir        : Path
+    keypoint_final_dir      : Path
+    SEED                    : int
+    BATCH_SIZE              : int
+
+@dataclass(frozen=True)
+class TrainingConfig:
+    base_model_path         : Path
+    history_path            : Path
+    checkpoint_path         : Path
+    loss_curve_path         : Path
+    accuracy_curve_path     : Path
+    EPOCHS                  : int
+    BATCH_SIZE              : int
+    SEED                    : int
+    VERBOSE                 : int
+    SAVE_PLOTS              : bool

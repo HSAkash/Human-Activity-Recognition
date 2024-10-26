@@ -64,3 +64,14 @@ prepare_callbacks:
   checkpoint_path: data/results/model_checkpoint/models
   history_path: data/results/model_checkpoint/history.txt
 
+prepare_dataset:
+  blured_final_dir: data/finalDataset/bluredImageDataset
+  keypoint_final_dir: data/finalDataset/keypointDataset
+
+training:
+  base_model_path: data/model/base_model.keras
+  history_path: data/results/model_checkpoint/history.txt
+  checkpoint_path: data/results/model_checkpoint/models
+  loss_curve_path: data/results/loss_curve.png
+  accuracy_curve_path: data/results/accuracy_curve.png
+

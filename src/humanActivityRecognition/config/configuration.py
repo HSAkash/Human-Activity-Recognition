@@ -14,7 +14,9 @@ from humanActivityRecognition.entity.config_entity import (
     FeatureExtractionConfig,
     FinalDatasetConfig,
     PrepareBaseModelConfig,
-    PrepareCallbacksConfig
+    PrepareCallbacksConfig,
+    PrepareDatasetConfig,
+    TrainingConfig
 )
 
 
@@ -182,7 +184,37 @@ class ConfigurationManager:
             best_checkpoint_path = config.best_checkpoint_path,
             checkpoint_path = config.checkpoint_path,
             history_path = config.history_path,
-            VERBOSE = config.VERBOSE
+            VERBOSE = self.params.VERBOSE
         )
 
         return prepare_callbacks_config
+    
+    def get_prepare_dataset_config(self) -> PrepareDatasetConfig:
+        config = self.config.prepare_dataset
+
+        prepare_dataset_config = PrepareDatasetConfig(
+            blured_final_dir = config.blured_final_dir,
+            keypoint_final_dir = config.keypoint_final_dir,
+            SEED = self.params.SEED,
+            BATCH_SIZE = self.params.BATCH_SIZE
+        )
+
+        return prepare_dataset_config
+    
+    def get_training_config(self) -> TrainingConfig:
+        config = self.config.training
+
+        training_config = TrainingConfig(
+            base_model_path = config.base_model_path,
+            history_path = config.history_path,
+            checkpoint_path = config.checkpoint_path,
+            loss_curve_path = config.loss_curve_path,
+            accuracy_curve_path = config.accuracy_curve_path,
+            SEED = self.params.SEED,
+            EPOCHS = self.params.EPOCHS,
+            BATCH_SIZE = self.params.BATCH_SIZE,
+            VERBOSE = self.params.VERBOSE,
+            SAVE_PLOTS = self.params.SAVE_PLOTS
+        )
+
+        return training_config

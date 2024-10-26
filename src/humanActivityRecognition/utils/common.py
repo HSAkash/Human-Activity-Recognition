@@ -2,7 +2,6 @@ import os
 from box.exceptions import BoxValueError
 import yaml
 from humanActivityRecognition import logger
-from humanActivityRecognition.entity.config_entity import HistoryModelConfig
 import json
 import joblib
 from ensure import ensure_annotations
@@ -88,32 +87,6 @@ def load_json(path: Path, verbose=True) -> ConfigBox:
     return ConfigBox(content)
 
 
-@ensure_annotations
-def load_history(history_path: Path) -> HistoryModelConfig:
-    """load history model
-
-    Args:
-        path (Path): path to history model
-
-    Returns:
-        ConfigBox: model history data
-    """
-    history = pd.read_csv(history_path)
-    loss = history['loss'].values
-    val_loss = history['val_loss'].values
-
-    accuracy = history['accuracy'].values
-    val_accuracy = history['val_accuracy'].values
-
-    epochs = history['epoch'].values
-
-    return HistoryModelConfig(
-        epoch=epochs,
-        loss=loss,
-        val_loss=val_loss,
-        accuracy=accuracy,
-        val_accuracy=val_accuracy
-    )
 
 
 

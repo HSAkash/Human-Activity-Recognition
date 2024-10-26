@@ -93,4 +93,21 @@ stages:
       - data/finalDataset/bluredImageDataset
       - data/finalDataset/keypointDataset
 
+  training:
+    cmd: python src/humanActivityRecognition/pipeline/stage_09_training.py
+    deps:
+      - src/humanActivityRecognition/pipeline/stage_09_training.py
+      - data/finalDataset/bluredImageDataset
+      - data/finalDataset/keypointDataset
+      - config/config.yaml
+    params:
+      - EPOCHS
+      - BATCH_SIZE
+      - VERBOSE
+      - SEED
+      - SAVE_PLOTS
+    outs:
+      - data/results/accuracy_curve.png
+      - data/results/loss_curve.png
+
 

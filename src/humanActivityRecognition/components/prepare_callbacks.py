@@ -39,8 +39,7 @@ class PrepareCallbacks:
         os.makedirs(os.path.dirname(self.config.history_path), exist_ok=True)
         return tf.keras.callbacks.CSVLogger(self.config.history_path, append=True)
 
-    def create_callbacks(self) -> list:
-        os.makedirs
+    def get_callbacks(self) -> list:
         return [
             self._create_best_model_check,
             self._create_checkpoint_model,

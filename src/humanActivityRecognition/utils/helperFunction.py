@@ -3,8 +3,6 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 from ensure import ensure_annotations
 from humanActivityRecognition import logger
-from humanActivityRecognition.entity.config_entity import HistoryModelConfig
-from humanActivityRecognition.utils.common import load_history
 import itertools
 import matplotlib.pyplot as plt
 import numpy as np
@@ -12,24 +10,16 @@ from sklearn.metrics import confusion_matrix
 
 
 @ensure_annotations
-def plot_loss_curves_history_path(
-        history: HistoryModelConfig,
-        save_loss_curves: Path,
-        save_accuracy_curves: Path,
-        save: bool = False
+def plot_loss_curves_history(
+        history_path,
+        save_loss_curves,
+        save_accuracy_curves,
+        save= False
     ):
     """ plot loss curves from history file
         
     Args:
-        history (HistoryModelConfig): history model data
-        history = {
-            'epoch': [1, 2, 3, .....],
-            'loss': [0.1, 0.2, 0.3, .....],
-            'val_loss': [0.2, 0.3, 0.4, .....],
-            'accuracy': [0.1, 0.2, 0.3, .....],
-            'val_accuracy': [0.2, 0.3, 0.4, .....]
-        }
-
+        history_path (Path): path to history file
         save_loss_curves (Path): path to save loss curves
         save_accuracy_curves (Path): path to save accuracy curves
     """
@@ -44,28 +34,36 @@ def plot_loss_curves_history_path(
     }
     """
 
+    # Load history
+    history = pd.read_csv(history_path)
+    loss = history['loss']
+    val_loss = history['val_loss']
+
+    accuracy = history['accuracy']
+    val_accuracy = history['val_accuracy']
+
+    epochs = range(len(history['epoch']))
+
     # Plot loss
-    plt.plot(history.epochs, history.loss, label='training_loss')
-    plt.plot(history.epochs, history.val_loss, label='val_loss')
+    plt.plot(epochs, loss, label='training_loss')
+    plt.plot(epochs, val_loss, label='val_loss')
     plt.title('Loss')
     plt.xlabel('Epochs')
     plt.legend()
     if save:
         plt.savefig(save_loss_curves)
         plt.close()
-        logger.info(f"Loss curves saved at: {save_loss_curves}")
 
     # Plot accuracy
     plt.figure()
-    plt.plot(history.epochs, history.accuracy, label='training_accuracy')
-    plt.plot(history.epochs, history.val_accuracy, label='val_accuracy')
+    plt.plot(epochs, accuracy, label='training_accuracy')
+    plt.plot(epochs, val_accuracy, label='val_accuracy')
     plt.title('Accuracy')
     plt.xlabel('Epochs')
     plt.legend()
     if save:
         plt.savefig(save_accuracy_curves)
         plt.close()
-        logger.info(f"Accuracy curves saved at: {save_accuracy_curves}")
 
 
 
