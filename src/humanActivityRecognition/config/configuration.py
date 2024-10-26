@@ -12,7 +12,8 @@ from humanActivityRecognition.entity.config_entity import (
     SplitingDatasetConfig,
     DataAugmentationConfig,
     FeatureExtractionConfig,
-    FinalDatasetConfig
+    FinalDatasetConfig,
+    PrepareBaseModelConfig
 )
 
 
@@ -152,3 +153,19 @@ class ConfigurationManager:
         )
 
         return final_dataset_config
+    
+    def get_prepare_base_model_config(self) -> PrepareBaseModelConfig:
+        config = self.config.prepare_base_model
+
+        create_directories([config.root_dir])
+
+        prepare_base_model_config = PrepareBaseModelConfig(
+            root_dir = config.root_dir,
+            base_model_path = config.base_model_path,
+            model_architecture_plot_path = config.model_architecture_plot_path,
+            blured_final_dir = config.blured_final_dir,
+            keypoint_final_dir = config.keypoint_final_dir,
+            SEED = self.params.SEED
+        )
+
+        return prepare_base_model_config

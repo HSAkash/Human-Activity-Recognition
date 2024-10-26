@@ -50,3 +50,10 @@ final_dataset:
   blured_final_dir: data/finalDataset/bluredImageDataset
   keypoint_final_dir: data/finalDataset/keypointDataset
   data_format: npy
+
+prepare_base_model:
+  root_dir: data/model
+  base_model_path: data/model/base_model.keras
+  model_architecture_plot_path: data/results/base_model_architecture.png
+  blured_final_dir: data/finalDataset/bluredImageDataset
+  keypoint_final_dir: data/finalDataset/keypointDataset

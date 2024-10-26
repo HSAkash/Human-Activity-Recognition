@@ -6,6 +6,7 @@ from humanActivityRecognition.pipeline.stage_04_spliting_dataset import Spliting
 from humanActivityRecognition.pipeline.stage_05_data_augmentation import DataAugmentationPipeline
 from humanActivityRecognition.pipeline.stage_06_feature_extraction import FeatureExtractionPipeline
 from humanActivityRecognition.pipeline.stage_07_final_dataset import FinalDatasetPipeline
+from humanActivityRecognition.pipeline.stage_08_prepare_base_model import PrepareBaseModelPipeline
 
 
 if __name__ == '__main__':
@@ -80,6 +81,16 @@ if __name__ == '__main__':
     try:
         logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
         obj = FinalDatasetPipeline()
+        obj.main()
+        logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+    except Exception as e:
+        logger.exception(e)
+        raise e
+    
+    STAGE_NAME = "Prepare Base Model"
+    try:
+        logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
+        obj = PrepareBaseModelPipeline()
         obj.main()
         logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
     except Exception as e:

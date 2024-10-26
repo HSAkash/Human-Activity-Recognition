@@ -81,6 +81,15 @@ class FinalDatasetConfig:
     MAX_WORKERS             : int
 
 @dataclass(frozen=True)
+class PrepareBaseModelConfig:
+    root_dir                            : Path
+    base_model_path                     : Path
+    model_architecture_plot_path        : Path
+    blured_final_dir                    : Path
+    keypoint_final_dir                  : Path
+    SEED                                : int
+
+@dataclass(frozen=True)
 class HistoryModelConfig:
     epoch                   : np.array
     loss                    : np.array
