@@ -3,7 +3,6 @@ import numpy as np
 from glob import glob
 from humanActivityRecognition import logger
 from humanActivityRecognition.entity.config_entity import PrepareBaseModelConfig
-from humanActivityRecognition.components.base_model_architecture import CombinedModel
 
 
 import tensorflow as tf
