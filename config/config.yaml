@@ -57,3 +57,10 @@ prepare_base_model:
   model_architecture_plot_path: data/results/base_model_architecture.png
   blured_final_dir: data/finalDataset/bluredImageDataset
   keypoint_final_dir: data/finalDataset/keypointDataset
+
+prepare_callbacks:
+  root_dir: data/results
+  best_checkpoint_path: data/results/model_checkpoint/model_best/best_model.keras
+  checkpoint_path: data/results/model_checkpoint/models
+  history_path: data/results/model_checkpoint/history.txt
+

@@ -13,7 +13,8 @@ from humanActivityRecognition.entity.config_entity import (
     DataAugmentationConfig,
     FeatureExtractionConfig,
     FinalDatasetConfig,
-    PrepareBaseModelConfig
+    PrepareBaseModelConfig,
+    PrepareCallbacksConfig
 )
 
 
@@ -169,3 +170,19 @@ class ConfigurationManager:
         )
 
         return prepare_base_model_config
+
+
+    def get_prepare_callbacks_config(self) -> PrepareCallbacksConfig:
+        config = self.config.prepare_callbacks
+
+        create_directories([config.root_dir])
+
+        prepare_callbacks_config = PrepareCallbacksConfig(
+            root_dir = config.root_dir,
+            best_checkpoint_path = config.best_checkpoint_path,
+            checkpoint_path = config.checkpoint_path,
+            history_path = config.history_path,
+            VERBOSE = config.VERBOSE
+        )
+
+        return prepare_callbacks_config

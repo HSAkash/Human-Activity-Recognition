@@ -90,6 +90,14 @@ class PrepareBaseModelConfig:
     SEED                                : int
 
 @dataclass(frozen=True)
+class PrepareCallbacksConfig:
+    root_dir                : Path
+    best_checkpoint_path    : Path
+    checkpoint_path         : Path
+    history_path            : Path
+    VERBOSE                 : int
+
+@dataclass(frozen=True)
 class HistoryModelConfig:
     epoch                   : np.array
     loss                    : np.array
