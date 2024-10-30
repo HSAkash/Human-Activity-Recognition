@@ -93,6 +93,17 @@ stages:
       - data/finalDataset/bluredImageDataset
       - data/finalDataset/keypointDataset
 
+  prepare_base_model:
+    cmd: python src/humanActivityRecognition/pipeline/stage_08_prepare_base_model.py
+    deps:
+      - src/humanActivityRecognition/pipeline/stage_08_prepare_base_model.py
+      - data/finalDataset/bluredImageDataset
+      - data/finalDataset/keypointDataset
+      - config/config.yaml
+    outs:
+      - data/model/base_model.keras
+      - data/results/base_model_architecture.png
+
   training:
     cmd: python src/humanActivityRecognition/pipeline/stage_09_training.py
     deps:
@@ -109,5 +120,22 @@ stages:
     outs:
       - data/results/accuracy_curve.png
       - data/results/loss_curve.png
+
+  evaluation:
+    cmd: python src/humanActivityRecognition/pipeline/stage_10_evaluation.py
+    deps:
+      - src/humanActivityRecognition/pipeline/stage_10_evaluation.py
+      - data/results/model_checkpoint/model_best/best_model.keras
+      - data/finalDataset/bluredImageDataset
+      - data/finalDataset/keypointDataset
+      - config/config.yaml
+    params:
+      - BATCH_SIZE
+      - VERBOSE
+      - SHUFFLE_BUFFER_SIZE
+    outs:
+      - data/results/confusion_matrix.png
+      - data/results/classification_report.txt
+      
 
 

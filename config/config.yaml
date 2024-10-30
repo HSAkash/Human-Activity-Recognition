@@ -75,3 +75,9 @@ training:
   loss_curve_path: data/results/loss_curve.png
   accuracy_curve_path: data/results/accuracy_curve.png
 
+evaluation:
+  best_model_path: data/results/model_checkpoint/model_best/best_model.keras
+  blured_final_dir: data/finalDataset/bluredImageDataset
+  confusion_matrix_path: data/results/confusion_matrix.png
+  classification_report_path: data/results/classification_report.txt
+

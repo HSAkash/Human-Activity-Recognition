@@ -103,6 +103,7 @@ class PrepareDatasetConfig:
     keypoint_final_dir      : Path
     SEED                    : int
     BATCH_SIZE              : int
+    SHUFFLE_BUFFER_SIZE     : int
 
 @dataclass(frozen=True)
 class TrainingConfig:
@@ -116,3 +117,11 @@ class TrainingConfig:
     SEED                    : int
     VERBOSE                 : int
     SAVE_PLOTS              : bool
+
+@dataclass(frozen=True)
+class EvaluationConfig:
+    best_model_path                 : Path
+    blured_final_dir                : Path
+    confusion_matrix_path           : Path
+    classification_report_path      : Path
+    VERBOSE                         : int

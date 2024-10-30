@@ -16,7 +16,8 @@ from humanActivityRecognition.entity.config_entity import (
     PrepareBaseModelConfig,
     PrepareCallbacksConfig,
     PrepareDatasetConfig,
-    TrainingConfig
+    TrainingConfig,
+    EvaluationConfig
 )
 
 
@@ -196,7 +197,8 @@ class ConfigurationManager:
             blured_final_dir = config.blured_final_dir,
             keypoint_final_dir = config.keypoint_final_dir,
             SEED = self.params.SEED,
-            BATCH_SIZE = self.params.BATCH_SIZE
+            BATCH_SIZE = self.params.BATCH_SIZE,
+            SHUFFLE_BUFFER_SIZE = self.params.SHUFFLE_BUFFER_SIZE
         )
 
         return prepare_dataset_config
@@ -218,3 +220,18 @@ class ConfigurationManager:
         )
 
         return training_config
+
+
+    def get_evaluation_config(self) -> EvaluationConfig:
+        config = self.config.evaluation
+        config_data = self.config.prepare_dataset
+
+        evaluation_config = EvaluationConfig(
+            best_model_path = config.best_model_path,
+            blured_final_dir = config_data.blured_final_dir,
+            confusion_matrix_path = config.confusion_matrix_path,
+            classification_report_path = config.classification_report_path,
+            VERBOSE = self.params.VERBOSE
+        )
+
+        return evaluation_config

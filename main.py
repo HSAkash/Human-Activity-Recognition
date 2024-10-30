@@ -8,6 +8,7 @@ from humanActivityRecognition.pipeline.stage_06_feature_extraction import Featur
 from humanActivityRecognition.pipeline.stage_07_final_dataset import FinalDatasetPipeline
 from humanActivityRecognition.pipeline.stage_08_prepare_base_model import PrepareBaseModelPipeline
 from humanActivityRecognition.pipeline.stage_09_training import TrainingPipeline
+from humanActivityRecognition.pipeline.stage_10_evaluation import EvaluationPipeline
 
 
 if __name__ == '__main__':
@@ -102,6 +103,17 @@ if __name__ == '__main__':
     try:
         logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
         obj = TrainingPipeline()
+        obj.main()
+        logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+    except Exception as e:
+        logger.exception(e)
+        raise e
+    
+
+    STAGE_NAME = "Model evaluation Pipeline"
+    try:
+        logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
+        obj = EvaluationPipeline()
         obj.main()
         logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
     except Exception as e:

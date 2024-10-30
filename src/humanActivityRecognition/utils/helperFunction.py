@@ -1,7 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
-from ensure import ensure_annotations
 from humanActivityRecognition import logger
 import itertools
 import matplotlib.pyplot as plt
@@ -9,7 +8,6 @@ import numpy as np
 from sklearn.metrics import confusion_matrix
 
 
-@ensure_annotations
 def plot_loss_curves_history(
         history_path,
         save_loss_curves,
@@ -67,60 +65,8 @@ def plot_loss_curves_history(
 
 
 
-def compare_historys(
-        history_paths: list,
-        history_names: list,
-        epochs: int,
-        save: bool = False,
-        save_loss_curves: Path = 'compare_historys_loss.png',
-        save_accuracy_curves: Path = 'compare_historys_accuracy.png'
-    ):
-    """
-    Compares multiple model historys.
-    Args:
-        history_paths: list of paths to history files
-        history_names: list of names for the history files
-        epochs: number of epochs
-        save: whether to save the figure or not
-        save_loss_curves: path to save loss curves
-        save_accuracy_curves: path to save accuracy curves
-    """
-    # Create figure and axes
-    fig, ax = plt.subplots(2, 1, figsize=(10, 10))
-    ax[0].set_title('Loss')
-    ax[1].set_title('Accuracy')
-    ax[0].set_xlabel('Epochs')
-    ax[1].set_xlabel('Epochs')
-    ax[0].set_ylabel('Loss')
-    ax[1].set_ylabel('Accuracy')
-    ax[0].grid()
-    ax[1].grid()
-    # Iterate over each history file
-    for i, history_path in enumerate(history_paths):
-        history = load_history(history_path)
-        # Plot loss
-        ax[0].plot(history.epoch, history.loss, label=f'{history_names[i]} training loss')
-        ax[0].plot(history.epoch, history.val_loss, label=f'{history_names[i]} validation loss')
-        # Plot accuracy
-        ax[1].plot(history.epoch, history.accuracy, label=f'{history_names[i]} training accuracy')
-        ax[1].plot(history.epoch, history.val_accuracy, label=f'{history_names[i]} validation accuracy')
-
-    # Add legend
-    ax[0].legend()
-    ax[1].legend()
-    # Save the figure
-    if save:
-        fig.savefig(save_loss_curves)
-        logger.info(f"Loss curves saved at: {save_loss_curves}")
-        fig.savefig(save_accuracy_curves)
-        logger.info(f"Accuracy curves saved at: {save_accuracy_curves}")
-
-    
-
-
 
 # Our function needs a different name to sklearn's plot_confusion_matrix
-@ensure_annotations
 def make_confusion_matrix(
     y_true: np.array,
     y_pred: np.array,
@@ -214,17 +160,16 @@ def make_confusion_matrix(
         logger.info(f"Confusion matrix saved at: {save_path}")
         
 
-@ensure_annotations
 def getPrescisionRecallF1(
-        y_true: np.array,
-        y_pred: np.array,
+        y_true,
+        y_pred,
         class_names: list
     ) -> str:
     """ get precision, recall, f1 score for each class
     
     Args:
-        y_true (np.array): true labels
-        y_pred (np.array): predicted labels
+        y_true (array/list): true labels
+        y_pred (array/list): predicted labels
         class_names (list): class names
     """
     confusion = confusion_matrix(y_true, y_pred)
@@ -254,15 +199,15 @@ def getPrescisionRecallF1(
     # Calculate avg F1 score
     avg_f1_score = np.mean(f1_score)
 
-
+    space_length = np.max([len(x) for x in class_names]) + 5
     print_data = ""
-    header = f"""{'Task':^20}   {'precision':^10}   {'recall':^10}  {'f1':^10}  {'Accuracy':^10}"""
+    header = f"""{'Task':^{space_length}}   {'precision':^10}   {'recall':^10}  {'f1':^10}  {'Accuracy':^10}"""
     print_data += header
     print_data += "\n" + f"""{'_'*len(header)}"""
     for i in range(len(class_names)):
         c_name, prec, rec, f1, accur = class_names[i], precision[i], recall[i], f1_score[i], accuracy_class_wise[i]
-        print_data += "\n" + f"""{c_name:^20}   {prec:^10.4f}   {rec:^10.4f}   {f1:^10.4f}   {accur:^10.4f}"""
+        print_data += "\n" + f"""{c_name:^{space_length}}   {prec:^10.4f}   {rec:^10.4f}   {f1:^10.4f}   {accur:^10.4f}"""
     print_data += "\n" + f"""{'_'*len(header)}"""
-    print_data += "\n" + f"""{'Average':^20}   {np.mean(precision):^10.4f}   {np.mean(recall):^10.4f}   {np.mean(f1_score):^10.4f}   {accuracy:^10.4f}"""
+    print_data += "\n" + f"""{'Average':^{space_length}}   {avg_precision:^10.4f}   {avg_recall:^10.4f}   {avg_f1_score:^10.4f}   {accuracy:^10.4f}"""
 
     return print_data

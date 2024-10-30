@@ -70,6 +70,10 @@ class PrepareDataset:
         y_test = tf.one_hot(test_labels, depth=self.num_classes)
 
         self.train_ds = create_dataset(X_train_paths_1, X_train_paths_2, y_train, self.config.BATCH_SIZE)
+        # shuffle
+        self.train_ds = self.train_ds.shuffle(buffer_size=self.config.SHUFFLE_BUFFER_SIZE)
+
+
         self.test_ds = create_dataset(X_test_paths_1, X_test_paths_2, y_test, self.config.BATCH_SIZE)
 
     def _show_dataset_shape(self):
