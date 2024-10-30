@@ -22,8 +22,8 @@ list_of_files = [
     "params.yaml",
     "requirements.txt",
     "setup.py",
-    "credentials/"
-    # "explore/dataPreprocessing/trials.ipynb",
+    "explore/",
+    "data/videoDataset/"
 
 ]
 
